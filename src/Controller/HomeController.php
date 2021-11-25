@@ -9,6 +9,10 @@
 
 namespace App\Controller;
 
+use App\Model\BeatManager;
+use App\Model\AcapellaManager;
+use App\Controller\AbstractController;
+
 class HomeController extends AbstractController
 {
     /**
@@ -23,4 +27,16 @@ class HomeController extends AbstractController
     {
         return $this->twig->render('Home/index.html.twig');
     }
+
+    public function list(): string
+    {
+        $acappelaManager = new AcapellaManager();
+        $beatManager = new BeatManager();
+
+        $acapellas = $acappelaManager->getAll();
+        $beats = $beatManager->getAll();
+
+        return $this->twig->render('Home/index.html.twig', ['acapellas' => $acapellas, 'beats' => $beats]);
+    }
+
 }

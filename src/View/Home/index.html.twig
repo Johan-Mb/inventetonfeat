@@ -1,13 +1,30 @@
 {% extends 'layout.html.twig' %}
 
+
+{% block stylesheet %}
+<!-- header -->
+{# <img src="/assets/images/TITLE.png" alt="" class="header"> #}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Road+Rage&display=swap" rel="stylesheet">
+
+{% endblock %}
+
 {% block content %}
 <!-- header -->
-<img src="/assets/images/TITLE.png" alt="" class="header">
-
+<div class="header">
+    <img src="/assets/images/TITLE.png" alt="">
+</div>
 <!-- title + instructions -->
-
-<h2>chosir ton artiste et ton beat</h2>
-
+<div class="title">
+    <h2>choisir ton artiste et ton beat</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis augue neque, id placerat arcu facilisis
+        sed. Aliquam erat volutpat. Vivamus gravida, leo a bibendum aliquam, metus libero tempus ligula, rhoncus
+        sagittis ex magna sit amet lectus. Proin id elit vel sem placerat tempor et at nulla. Vivamus posuere lorem in
+        velit vehicula laoreet. Etiam ut euismod tortor, nec porttitor neque. Curabitur id neque leo. Vestibulum mi mi,
+        mattis vel pretium vitae, placerat eu elit.</p>
+</div>
 <!-- body -->
 
 
@@ -16,19 +33,61 @@
     <!-- aside gauche -->
 
     <aside class="aside-left">
-        <h3>chosir ton artiste</h3>
-        <ul>
-            <li>
+        <h3>Première lettre de ton prénom</h3>
 
-            </li>
+        {% for acapella in acapellas %}
+
+        <ul>
+                <li>
+                    <div class="name">
+                            <label for="{{ acapella.name }}"> {{ acapella.name }} </label>
+                            <input type="radio" id="" name="" value="">
+                    </div>
+                </li>
+
         </ul>
+
+        {% endfor %}
+
     </aside>
 
     <!-- button play -->
 
     <center>
-        <div class="play">
 
+        <audio controls id="audioPlayer"></audio>
+
+        <div id="player">
+                <div id="bouton-play-texte">
+                    <p id="action">Play</p><i id="play" class="fa fa-play"></i>
+                </div>
+
+            <div id="currentTrack"> </div>
+
+                <ul id="playlist">
+                    {% for acapella in acapellas %}
+                        <a href="{{ acapella.url }}">
+                            <span id="player-track-artist">{{ acapella.name }}</span></br>
+                        </a>
+                    {% endfor %}
+VS
+                    {% for beat in beats %}
+                        <a href="{{ beat.url }}">
+                            <span id="player-track-artist">{{ beat.name }}</span></br>
+                        </a>
+                    {% endfor %}
+
+                    </li>
+                </ul>
+            </div>
+            {% block javascript %}
+
+                <script src="/assets/js/player.js"></script>
+                <script>
+                    audioPlayer();
+                </script>
+
+            {% endblock %}
         </div>
 
     </center>
@@ -38,11 +97,21 @@
 
     <aside class="aside-right">
 
-        <h3>chosir beat</h3>
-        <ul>
-            <li>
+<h3>Première lettre de ton nom</h3>
 
-            </li>
+        <ul>
+            {% for beat in beats %}
+
+                <li>
+                    <div class="name">
+
+                    <label for="{{ beat.name }}"> {{ beat.name }} </label>
+                    <input type="radio" id="" name="" value="">
+
+                    </div>
+                </li>
+
+            {% endfor %}
         </ul>
     </aside>
 </div>
