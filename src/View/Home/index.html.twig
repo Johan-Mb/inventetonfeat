@@ -2,118 +2,114 @@
 
 
 {% block stylesheet %}
-<!-- header -->
-{# <img src="/assets/images/TITLE.png" alt="" class="header"> #}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Road+Rage&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
 
 {% endblock %}
 
 {% block content %}
-<!-- header -->
-<div class="header">
-    <img src="/assets/images/TITLE.png" alt="">
-</div>
-<!-- title + instructions -->
-<div class="title">
-    <h2>choisir ton artiste et ton beat</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis augue neque, id placerat arcu facilisis
-        sed. Aliquam erat volutpat. Vivamus gravida, leo a bibendum aliquam, metus libero tempus ligula, rhoncus
-        sagittis ex magna sit amet lectus. Proin id elit vel sem placerat tempor et at nulla. Vivamus posuere lorem in
-        velit vehicula laoreet. Etiam ut euismod tortor, nec porttitor neque. Curabitur id neque leo. Vestibulum mi mi,
-        mattis vel pretium vitae, placerat eu elit.</p>
-</div>
-<!-- body -->
+    <!-- header -->
+    <div id="header">
+
+    <img src="/assets/images/inventetonfeat-ok.png">
+
+    </div>
 
 
-<div class="body">
+<div id="conteneur-principal">
 
     <!-- aside gauche -->
+    <div id="left-side">
 
-    <aside class="aside-left">
-        <h3>Première lettre de ton prénom</h3>
+        <h2>Première lettre de ton prénom</h2>
 
-        {% for acapella in acapellas %}
+            <div class="liste-tracks">
 
-        <ul>
-                <li>
-                    <div class="name">
-                            <label for="{{ acapella.name }}"> {{ acapella.name }} </label>
-                            <input type="radio" id="" name="" value="">
-                    </div>
+                {% for acapella in acapellas %}
+
+                <li class="playlist">
+                    <input type="radio" class="acapella1" name="acapella" id="acapella_{{ acapella.id }}" value="{{ acapella.url }}">
+                        <label id="labelfor_acapella_{{ acapella.id }}" for="acapella_{{ acapella.id }}" >{{ acapella.name }}</label>
+                {% endfor %}
+
                 </li>
 
-        </ul>
+            </div>
 
-        {% endfor %}
-
-    </aside>
+    </div>
 
     <!-- button play -->
 
-    <center>
+    <div id="center">
 
-        <audio controls id="audioPlayer"></audio>
+        <div id="versus">
 
-        <div id="player">
-                <div id="bouton-play-texte">
-                    <p id="action">Play</p><i id="play" class="fa fa-play"></i>
-                </div>
-
-            <div id="currentTrack"> </div>
-
-                <ul id="playlist">
-                    {% for acapella in acapellas %}
-                        <a href="{{ acapella.url }}">
-                            <span id="player-track-artist">{{ acapella.name }}</span></br>
-                        </a>
-                    {% endfor %}
-VS
-                    {% for beat in beats %}
-                        <a href="{{ beat.url }}">
-                            <span id="player-track-artist">{{ beat.name }}</span></br>
-                        </a>
-                    {% endfor %}
-
-                    </li>
-                </ul>
+            <div id="songname1"> Choisir artiste 1 à gauche
             </div>
-            {% block javascript %}
+            FEAT.
+            <div id="songname2">Choisir artiste 2 à droite
+            </div>
 
-                <script src="/assets/js/player.js"></script>
-                <script>
-                    audioPlayer();
-                </script>
-
-            {% endblock %}
         </div>
 
-    </center>
+        <div id="player-principal">
+            <audio controls id="audioPlayer1"></audio>
+
+            <div id="player">
+                    <p id="action">Play</p>
+                    <i id="play" class="fa fa-play"></i>
+            </div>
+
+        <audio controls id="audioPlayer2"></audio>
+
+            <div id="play2">
+                <p id="action">Play</p><i id="play2" class="fa fa-play"></i>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- side right -->
+
+    <div id="right-side">
 
 
-    <!-- aside droit -->
+        <h2>Première lettre de ton nom</h2>
 
-    <aside class="aside-right">
+            <div class="liste-tracks">
 
-<h3>Première lettre de ton nom</h3>
+                {% for beat in beats %}
 
-        <ul>
-            {% for beat in beats %}
+                    <li class="playlist">
+                            <input type="radio" class="acapella2" name="beat" id="beat_{{ beat.id }}" value="{{ beat.url }}">
+                            <label id="labelfor_beat_{{ beat.id }}" for="beat_{{ beat.id }}"> {{ beat.name }}</label>
+                    </li>
+                {% endfor %}
 
-                <li>
-                    <div class="name">
+            </div>
+    </div>
 
-                    <label for="{{ beat.name }}"> {{ beat.name }} </label>
-                    <input type="radio" id="" name="" value="">
-
-                    </div>
-                </li>
-
-            {% endfor %}
-        </ul>
-    </aside>
 </div>
+
+    <script src="/assets/js/player.js"></script>
+
+
+    <footer>
+
+        <button onclick="document.location.reload(false)" class="reset"> Reset </button>
+        <p>© made with ♥ by Emiliano, Damien et Johan</p>
+    </footer>
+
+    <script src="/assets/js/background-color.js"></script>
 
 {% endblock %}

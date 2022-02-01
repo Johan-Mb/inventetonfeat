@@ -34,7 +34,11 @@ class HomeController extends AbstractController
         $beatManager = new BeatManager();
 
         $acapellas = $acappelaManager->getAll();
+        shuffle($acapellas);
+
+
         $beats = $beatManager->getAll();
+        shuffle($beats);
 
         return $this->twig->render('Home/index.html.twig', ['acapellas' => $acapellas, 'beats' => $beats]);
     }

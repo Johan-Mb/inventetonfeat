@@ -13,6 +13,6 @@ class AcapellaManager extends AbstractManager
         $statement = $this->pdo->query("SELECT * FROM acapella");
         $acapellas = $statement->fetchAll();
 
-        return $acapellas;
+        return  $acapellas;
     }
 }

@@ -1,36 +1,56 @@
-// fonction gérant le lancement du son, l'enchainement des tracks et le random
+// fonction gérant le player
+const player = {
+    number1: document.getElementById('audioPlayer1'),
+    number2: document.getElementById('audioPlayer2')
+};
+const play_button = $('#play');
+const text = $('#action');
+let mySongUrl = '';
 
-function audioPlayer()
-{
-    var currentSong = Math.floor(Math.random() * $("#playlist a").length);
-    $("#audioPlayer")[0].src = $("#playlist a")[currentSong];
-    $("#currentTrack").text($($("#playlist a")[currentSong]).text());
+$("input[name=acapella]").on("change", function(){
+    getSongUrl(1, 'acapella')
+})
+$("input[name=beat]").on("change", function(){
+    getSongUrl(2, 'beat')
+})
 
-    $("#audioPlayer")[0].addEventListener("ended", function(){
-        currentSong++;
-        if(currentSong == $("#playlist a").length)
-            currentSong = 0;
-        $("#audioPlayer")[0].src = $("#playlist a")[currentSong].href;
-        $("#currentTrack").text($($("#playlist a")[currentSong]).text());
-        $("#audioPlayer")[0].play();
-    });
+const getSongUrl = (id, style) => {
+    const songlist = document.querySelectorAll(`.acapella${id}`);
+    let songId = '';
+    songlist.forEach(song => {
+        if (song.checked === true) {
+            mySongUrl = song.value;
+            songId = song.id;
+        }
+    })
+    let label = document.getElementById(`labelfor_${songId}`);
+    const songName = document.getElementById(`songname${id}`);
+    songName.innerText = label.innerText;
+
+    const number = `number${id}`;
+    player[number].src = mySongUrl;
 }
 
-// fonction gérant le bouton play / pause
-
-var player = document.getElementById('audioPlayer');
-var play_button = $('#play');
-var text = $('#action');
-
 play_button.click(function() {
-    player[player.paused ? 'play' : 'pause']();
-    $(this).toggleClass("fa-pause", !player.paused);
+    managePlayer(1);
+    managePlayer(2);
 
-    if (player.paused) {
+    const actualPlayer = player.number1;
+    $(this).toggleClass("fa-pause", !actualPlayer.paused ),
+    $(this).toggleClass("fa-play", actualPlayer.paused )
+
+});
+
+const managePlayer = (id) => {
+    const number = `number${id}`
+    const myPlayer = player[number];
+
+    if (!myPlayer.paused) {
         text.text('Play');
+        myPlayer.pause()
     }
     else {
         text.text('Pause');
+        myPlayer.play()
     }
-    $(this).toggleClass("fa-play", player.paused);
-});
+}

@@ -1,67 +1,233 @@
-
-ul {
-    list-style-type: upper-alpha
-}
-
 /* general */
 
 * {
     margin: 0px;
     padding: 0px;
-
+    font-family: 'Montserrat', sans-serif;
 }
 
-body{
-    background-color: #26890c;
-    background-repeat: repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
+body {
+    background-color: #FC1D37;
 }
+
 /* header */
-.header{
+.header {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+
 }
 
-.header img {
-    width: 400px;
+li {
+    list-style-type: upper-alpha
 }
 
-/* title et instructions */
+h1 {
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 40px;
+    background-color: white;
+    padding: 5px 20px 5px 10px;
+    border-radius: 5px;
+
+}
+
+h2 {
+    font-size: 30px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+button {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* CSS header */
 
 
-.title {
-    font-family: 'Road Rage', cursive;
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+img {
+    width: 35%;
+}
+
+#conteneur-principal {
+    display: flex;
+    align-items: center;
+
+}
+
+#left-side {
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    padding: 4%;
 }
 
+.liste-tracks {
+    background-color: white;
+    padding: 8%;
+    border-radius: 5px;
+    width: 70%;
+}
 
-.title h2{
-    font-family: 'Concert One', cursive;
+.playlist {
+    margin: 7% 0 ;
+}
+
+.playlist label {
+border: 1px solid Black;
+border-radius: 5px;
+padding: 2%;
+}
+
+.playlist label:hover {
+    border-radius: 5px;
+    padding: 2%;
+    color: white;
+    background-color: black;
+    }
+
+.playlist input:checked {
+    border-radius: 5px;
+    padding: 1%;
+    color: white;
+    background-color: black;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 1px solid black;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+/* CSS conteneur central */
+
+#center {
     display: flex;
+    flex-direction: column;
+    width: 40%;
     justify-content: center;
-    font-size: 50px;
+    align-items: center;
+    padding: 3%;
+}
+
+#player-principal {
+    color: white;
+    transition: transform 1.2s;
+    position: fixed;
+    top: 30vw;
+}
+
+#versus {
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+    position: fixed;
+    top: 20vw;
+}
+
+#player {
+    font-size: 55px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+#action {
     text-transform: uppercase;
 }
 
-
-.title p{
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-    margin-top: 30px;
-    margin-left: 20px;
-    margin-right: 20px;
+#player-principal:hover {
+    transform: scale(1.05);
 }
 
-/* body */
+#play {
+    font-size: 2em;
+}
 
+#songname1 {
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 10px 0 10px 0;
+}
 
-.body{
+#songname2 {
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding-top: 10px;
+
+}
+
+/* CSS conteneur right */
+
+#right-side {
     display: flex;
-    justify-content: space-around;
-    margin-top: 50px;
+    flex-direction: column;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    padding: 4%;
+}
+
+#play2 {
+    display: none;
+}
+
+audio {
+    display: none;
+}
+
+/* CSS conteneur footer */
+
+
+footer {
+    display: flex;
+    flex-direction: column;
+}
+
+footer p {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    margin: 10px;
+}
+
+.reset {
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50px;
+    height: 30px;
+    font-size: 13px;
+    transition: all 300ms;
+}
+
+.reset:hover {
+    width: 65px;
+    background-color: white;
+    color: black;
 }
