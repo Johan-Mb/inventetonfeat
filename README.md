@@ -1,81 +1,55 @@
-# Simple MVC
+# HELLO, BIENVENUE SUR TA BIBLIODEV
 
-## Description
+Ceci est une petite application permettant de  **trier, ranger et retrouver**  toutes les ressources nécessaires à ton apprentissage du développement web. L'outil idéal à associer avec la plateforme Odyssey (de la Wild Code School) ou Notion. Il a été conçu en PHP / Symfony.
 
-This repository is a simple PHP MVC structure from scratch.
+La Bibliodev fonctionne comme un meuble à vinyles.  **Un thème**  contient de  **nombreux sous-thèmes**  (comme une case contient plein de disques et un disque, plein de morceaux). Et chaque sous-thème contient  **d'innombrables ressources**. Chaque ressource est catégorisée  **par type**  : cours, vidéo ou lien utile. Un niveau de difficulté est associé à chaque ressource pour un futur tri par level.
 
-It uses some cool vendors/libraries such as Twig and Grumphp.
-For this one, just a simple example where users can choose one of their databases and see tables in it.
+Maintenant tu sais tout.  
+**Fais-en bon usage !**
 
-## Steps
+# Initialisation
 
-1. Clone the repo from Github.
-2. Run `composer install`.
-3. Create *config/db.php* from *config/db.php.dist* file and add your DB parameters. Don't delete the *.dist* file, it must be kept.
-```php
-define('APP_DB_HOST', 'your_db_host');
-define('APP_DB_NAME', 'your_db_name');
-define('APP_DB_USER', 'your_db_user_wich_is_not_root');
-define('APP_DB_PASSWORD', 'your_db_password');
-```
-4. Import *database.sql* in your SQL server, you can do it manually or use the *migration.php* script which will import a *database.sql* file.
-5. Run the internal PHP webserver with `php -S localhost:8000 -t public/`. The option `-t` with `public` as parameter means your localhost will target the `/public` folder.
-6. Go to `localhost:8000` with your favorite browser.
-7. From this starter kit, create your own web application.
+### Installer le projet
 
-### Windows Users
+1.  Cloner le projet
+2.  Run  `composer install`
+3.  Run  `yarn install`
+4.  Run  `yarn encore dev`
+5.  Run  `php -S localhost:8000 -t public`
+6.  Run  `yarn watch`
 
-If you develop on Windows, you should edit you git configuration to change your end of line rules with this command :
+### Tester le projet
 
-`git config --global core.autocrlf true`
+1.  Configurer son .env.local
+2.  Run  `php /bin console doctrine:database:create`
+3.  Run  `php /bin console doctrine:make:migration`
+4.  Run  `php /bin console doctrine:fixtures:load`
+5.  Go  `localhost:8000/login`
+6.  Identifiants et mots de passe :
+    -   Admin :  johan@wilder.com  / myadminpassword
+    -   User :  michele@wilder.com  / mycontributorpassword
+### Notes fixtures
 
-## Example 
+Des fixtures sont disponibles pour les users et plusieurs premiers grands thèmes. Une fois le projet lancé, amusez-vous directement à ajouter des sous-thèmes et ressources.
+## Fonctionnalités
+- CRUD : thèmes
+- CRUD : sous-thèmes + afficher les sous-thèmes liés à un thème choisi
+- CRUD : ressources + afficher les ressources liées à un sous-thème choisi
+- CRUD : profil
+- Hashage de mot de passe
+- Affichage de la date du jour
+- Login / logout
+- Register
 
-An example (a basic list of items) is provided (you can load the *simple-mvc.sql* file in a test database). The accessible URLs are :
+## Features V2 
 
-* Home page at [localhost:8000/](localhost:8000/)
-* Items list at [localhost:8000/items](localhost:8000/items)
-* Item details [localhost:8000/items/show?id=:id](localhost:8000/item/show?id=2)
-* Item edit [localhost:8000/items/edit?id=:id](localhost:8000/items/edit?id=2)
-* Item add [localhost:8000/items/add](localhost:8000/items/add)
-* Item deletion [localhost:8000/items/delete?id=:id](localhost:8000/items/delete?id=2)
-
-You can find all these routes declared in the file `src/routes.php`. This is the very same file where you'll add your own new routes to the application.
-
-## How does URL routing work ?
-
-![simple_MVC.png](.tours/simple_MVC.png)
-
-
-## Ask for a tour !
-
-<img src="https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/codetour/.tours/photo-1632178151697-fd971baa906f.jpg" alt="Guided tour" width="150"/>
-
-We prepare a little guided tour to start with the simple-MVC.
-
-To take it, you need to install the `Code Tour` extension for Visual Studio Code : [Code Tour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
-
-It will give access to a new menu on your IDE where you'll find the different tours about the simple-MVC. Click on play to start one : 
-
-![menu](https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/codetour/.tours/code_tour_menu.png)
-
-
-
-## Run it on docker
-
-If you don't know what is docker, skip this chapter. ;) 
-
-Otherwise, you probably see, this project is ready to use with docker. 
-
-To build the image, go into the project directory and in your CLI type:
-
-```
-docker build -t simple-mvc-container .
-```
-
-then, run it to open it on your localhot :
-
-```
-docker run -i -t --name simple-mvc  -p 80:80 simple-mvc-container
-```
-
+- Rendre l'application responsive
+- ressource/new : filtrer les sous-thèmes en fonction du thème choisi
+- Mode sombre
+- homepage : vérification des users 
+- Barres de recherche fonctionnelles
+- Messages flash lors d'ajouts de thèmes, sous-thèmes ou ressources
+- Mise en place d'une page d'erreur 404 / 500...
+- Possibilité de réinitialiser son MDP
+- Possibilité de trier les ressources par level
+##
